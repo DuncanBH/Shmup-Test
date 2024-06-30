@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://i3x1jvnswsns"]
+
+[ext_resource type="PackedScene" uid="uid://ch3hdvrodg0ug" path="res://scenes/Player.tscn" id="1_j476v"]
+[ext_resource type="PackedScene" uid="uid://cos8hamta6tk6" path="res://scenes/enemy.tscn" id="2_ni105"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4y2tn"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3xlwi"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fsyaa"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_20gnp"]
+normal = Vector2(-1, 0)
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_j476v")]
+
+[node name="Bounds" type="Node" parent="."]
+
+[node name="Top" type="StaticBody2D" parent="Bounds"]
+position = Vector2(0, -320)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Top"]
+shape = SubResource("WorldBoundaryShape2D_4y2tn")
+
+[node name="Bottom" type="StaticBody2D" parent="Bounds"]
+position = Vector2(0, 326)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Bottom"]
+position = Vector2(1, 0)
+shape = SubResource("WorldBoundaryShape2D_3xlwi")
+
+[node name="Left" type="StaticBody2D" parent="Bounds"]
+position = Vector2(-576, 0)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Left"]
+shape = SubResource("WorldBoundaryShape2D_fsyaa")
+
+[node name="Right" type="StaticBody2D" parent="Bounds"]
+position = Vector2(577, 0)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Right"]
+position = Vector2(-1, 0)
+shape = SubResource("WorldBoundaryShape2D_20gnp")
+
+[node name="Enemy" parent="." instance=ExtResource("2_ni105")]

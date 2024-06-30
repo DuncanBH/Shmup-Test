@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://ubl5cqkys8tq"]
+
+[ext_resource type="Texture2D" uid="uid://bi5dgyflravw3" path="res://assets/Main Ship - Weapons - Auto Cannon.png" id="1_tagf1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8io33"]
+atlas = ExtResource("1_tagf1")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euqib"]
+atlas = ExtResource("1_tagf1")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_256d0"]
+atlas = ExtResource("1_tagf1")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07xms"]
+atlas = ExtResource("1_tagf1")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcix6"]
+atlas = ExtResource("1_tagf1")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0y0w"]
+atlas = ExtResource("1_tagf1")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw376"]
+atlas = ExtResource("1_tagf1")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhs83"]
+atlas = ExtResource("1_tagf1")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_epmfj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8io33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euqib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_256d0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07xms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcix6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0y0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jw376")
+}],
+"loop": true,
+"name": &"Fire",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhs83")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[node name="AutoCannon" type="AnimatedSprite2D"]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_epmfj")
+animation = &"Idle"

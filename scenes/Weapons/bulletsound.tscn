@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c06njnfotoxij"]
+
+[ext_resource type="AudioStream" uid="uid://c87w3t6jp6met" path="res://assets/669855__theendofacycle__clicky-snare-drum-hit.wav" id="1_ux5aw"]
+
+[node name="Bulletsound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_ux5aw")

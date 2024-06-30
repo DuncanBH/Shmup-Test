@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://ch3hdvrodg0ug"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_6cvkm"]
+[ext_resource type="Texture2D" uid="uid://isb4krca7p6h" path="res://assets/Main Ship - Base - Full health.png" id="1_tclvk"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="3_jssnq"]
+[ext_resource type="PackedScene" uid="uid://ubl5cqkys8tq" path="res://scenes/Weapons/auto_cannon.tscn" id="4_wt6td"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uxa2r"]
+radius = 13.0
+
+[sub_resource type="GDScript" id="GDScript_u6vvq"]
+script/source = "extends AnimatedSprite2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_6cvkm")
+SLOW_SPEED = 200
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_tclvk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uxa2r")
+
+[node name="Weapon" type="Node2D" parent="." node_paths=PackedStringArray("weaponAnim")]
+script = ExtResource("3_jssnq")
+weaponAnim = NodePath("AutoCannonAnim")
+
+[node name="AutoCannonAnim" parent="Weapon" instance=ExtResource("4_wt6td")]
+position = Vector2(0, -9)
+scale = Vector2(2, 2)
+script = SubResource("GDScript_u6vvq")
+
+[connection signal="animation_looped" from="Weapon/AutoCannonAnim" to="Weapon" method="_on_auto_cannon_anim_animation_looped"]

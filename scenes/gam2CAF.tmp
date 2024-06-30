@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://i3x1jvnswsns"]
+
+[ext_resource type="PackedScene" uid="uid://ch3hdvrodg0ug" path="res://scenes/Player.tscn" id="1_j476v"]
+[ext_resource type="Texture2D" uid="uid://isb4krca7p6h" path="res://assets/Main Ship - Base - Full health.png" id="2_3tst0"]
+[ext_resource type="Script" path="res://scenes/Enemy.gd" id="2_ihatc"]
+[ext_resource type="PackedScene" uid="uid://c06njnfotoxij" path="res://scenes/bulletsound.tscn" id="4_t02br"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4y2tn"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3xlwi"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fsyaa"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_20gnp"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2dd21"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_j476v")]
+
+[node name="Bounds" type="Node" parent="."]
+
+[node name="Top" type="StaticBody2D" parent="Bounds"]
+position = Vector2(0, -320)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Top"]
+shape = SubResource("WorldBoundaryShape2D_4y2tn")
+
+[node name="Bottom" type="StaticBody2D" parent="Bounds"]
+position = Vector2(0, 326)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Bottom"]
+position = Vector2(1, 0)
+shape = SubResource("WorldBoundaryShape2D_3xlwi")
+
+[node name="Left" type="StaticBody2D" parent="Bounds"]
+position = Vector2(-576, 0)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Left"]
+shape = SubResource("WorldBoundaryShape2D_fsyaa")
+
+[node name="Right" type="StaticBody2D" parent="Bounds"]
+position = Vector2(577, 0)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Right"]
+position = Vector2(-1, 0)
+shape = SubResource("WorldBoundaryShape2D_20gnp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -230)
+scale = Vector2(4.28, 4.28)
+collision_layer = 3
+script = ExtResource("2_ihatc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_2dd21")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_3tst0")
+flip_v = true
+
+[node name="Bulletsound" parent="." instance=ExtResource("4_t02br")]
+unique_name_in_owner = true
