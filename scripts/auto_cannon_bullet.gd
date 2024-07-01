@@ -4,17 +4,16 @@ class_name AutoCannonBullet extends Node2D
 @onready var animation_player = $AnimationPlayer
 
 func _ready():
-    #print("bullet check")
-    pass
+	#print("bullet check")
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-    position.y -= BulletSpeed
+	position.y -= BulletSpeed
  
 func _on_area_2d_body_entered(body):
-    if body is Enemy:
-        body.damage(1)
-        animation_player.play("hit")
-        
-    else:
-        queue_free()
+	if body is Enemy:
+		body.damage(1)
+		animation_player.play("hit")
+	else:
+		queue_free()

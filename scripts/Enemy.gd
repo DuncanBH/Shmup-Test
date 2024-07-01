@@ -1,21 +1,16 @@
-class_name Enemy extends Node2D
+class_name Enemy extends CharacterBody2D
 
-@export var health := 100
+@onready var player := %Player
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func damage(dmg: int):
-	health -= dmg
+# temporarilty until bullets are reworked
+func damage(damage: int):
+	$Health.damage(damage) 
 	
-	print(health)
-	
-	if (health < 0):
-		print("dead!")
-		queue_free()
+func _physics_process(delta):
+	look_at(player.position)
+	rotation_degrees -= 90
+
+
+func _on_health_health_depleted():
+	print("dead!")
+	queue_free()

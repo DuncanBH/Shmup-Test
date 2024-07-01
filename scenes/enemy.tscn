@@ -1,19 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://cos8hamta6tk6"]
+[gd_scene load_steps=7 format=3 uid="uid://b8nxdj3qnfcoq"]
 
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_avpre"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_sjtlv"]
+[ext_resource type="PackedScene" uid="uid://7jo35uk6ctlu" path="res://scenes/health.tscn" id="2_2r33n"]
 [ext_resource type="Texture2D" uid="uid://isb4krca7p6h" path="res://assets/Main Ship - Base - Full health.png" id="2_3stcs"]
+[ext_resource type="Script" path="res://scripts/Hitbox.gd" id="3_3ui6p"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2dd21"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_mt5qp"]
 
-[node name="Enemy" type="StaticBody2D"]
-position = Vector2(0, -230)
-scale = Vector2(4.28, 4.28)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqfxn"]
+size = Vector2(30, 26)
+
+[node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(4, 4)
 collision_layer = 3
-script = ExtResource("1_avpre")
+collision_mask = 2
+script = ExtResource("1_sjtlv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2dd21")
+[node name="BoundingBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mt5qp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_3stcs")
 flip_v = true
+
+[node name="Health" parent="." instance=ExtResource("2_2r33n")]
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("3_3ui6p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_pqfxn")
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
