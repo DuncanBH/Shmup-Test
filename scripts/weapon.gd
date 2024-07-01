@@ -1,6 +1,6 @@
 class_name Weapon extends Node2D
 
-@export var bullet = preload("res://scenes/Weapons/auto_cannon_bullet.tscn")
+@export var bullet_scene = preload("res://scenes/Weapons/auto_cannon_bullet.tscn")
 @export var weaponAnim : AnimatedSprite2D
 
 @export var weaponCooldown : float = 10.0
@@ -17,7 +17,7 @@ func _process(delta):
 	timer += delta
 	
 	if weaponAnim.animation == "Fire" && timer > weaponCooldown:
-		var bullet = bullet.instantiate()
+		var bullet = bullet_scene.instantiate()
 		add_child(bullet)
 		bullet.position.x += 20 * firingSide
 		

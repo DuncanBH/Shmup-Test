@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch3hdvrodg0ug"]
+[gd_scene load_steps=7 format=3 uid="uid://ch3hdvrodg0ug"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_6cvkm"]
 [ext_resource type="Texture2D" uid="uid://isb4krca7p6h" path="res://assets/Main Ship - Base - Full health.png" id="1_tclvk"]
@@ -7,6 +7,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxa2r"]
 radius = 13.0
+
+[sub_resource type="GDScript" id="GDScript_u6vvq"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_6cvkm")
@@ -27,5 +29,6 @@ weaponCooldown = 0.025
 [node name="AutoCannonAnim" parent="Weapon" instance=ExtResource("4_wt6td")]
 position = Vector2(0, -9)
 scale = Vector2(2, 2)
+script = SubResource("GDScript_u6vvq")
 
 [connection signal="animation_looped" from="Weapon/AutoCannonAnim" to="Weapon" method="_on_auto_cannon_anim_animation_looped"]
