@@ -1,12 +1,53 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch3hdvrodg0ug"]
+[gd_scene load_steps=12 format=3 uid="uid://ch3hdvrodg0ug"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_6cvkm"]
 [ext_resource type="Texture2D" uid="uid://isb4krca7p6h" path="res://assets/Main Ship - Base - Full health.png" id="1_tclvk"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="3_jssnq"]
 [ext_resource type="PackedScene" uid="uid://ubl5cqkys8tq" path="res://scenes/Weapons/auto_cannon.tscn" id="4_wt6td"]
+[ext_resource type="Script" path="res://scripts/Hitbox.gd" id="5_kla14"]
+[ext_resource type="Script" path="res://scripts/Health.gd" id="6_nvusv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxa2r"]
 radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_45gi1"]
+radius = 11.0
+
+[sub_resource type="Animation" id="Animation_axh1d"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s65m0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uskx4"]
+_data = {
+"RESET": SubResource("Animation_s65m0"),
+"hit": SubResource("Animation_axh1d")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_6cvkm")
@@ -22,10 +63,29 @@ shape = SubResource("CircleShape2D_uxa2r")
 [node name="Weapon" type="Node2D" parent="." node_paths=PackedStringArray("weaponAnim")]
 script = ExtResource("3_jssnq")
 weaponAnim = NodePath("AutoCannonAnim")
-weaponCooldown = 0.025
+weaponCooldown = 0.1
 
 [node name="AutoCannonAnim" parent="Weapon" instance=ExtResource("4_wt6td")]
 position = Vector2(0, -9)
 scale = Vector2(2, 2)
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 8
+script = ExtResource("5_kla14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_45gi1")
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("6_nvusv")
+MAX_HEALTH = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uskx4")
+}
+
 [connection signal="animation_looped" from="Weapon/AutoCannonAnim" to="Weapon" method="_on_auto_cannon_anim_animation_looped"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

@@ -1,4 +1,4 @@
-class_name AutoCannonBullet extends AnimatableBody2D
+class_name EnemyBullet extends AnimatableBody2D
 
 @export var BulletDamage := 1
 @export var BulletSpeed : int = 6
@@ -6,10 +6,9 @@ class_name AutoCannonBullet extends AnimatableBody2D
 @onready var animation_player = $AnimationPlayer
 
 func _physics_process(_delta):
-	position -= transform.y * BulletSpeed
+	position += transform.y * BulletSpeed
 
 func processHit(isEnemy := false):
-	
 	if isEnemy:
 		animation_player.play("hit")
 	else:
