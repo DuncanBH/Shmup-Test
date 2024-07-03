@@ -55,3 +55,6 @@ shape = SubResource("WorldBoundaryShape2D_20gnp")
 
 [node name="Enemy" parent="." instance=ExtResource("3_fo3hp")]
 position = Vector2(1, -229)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_fo3hp")]
+position = Vector2(174, -229)
