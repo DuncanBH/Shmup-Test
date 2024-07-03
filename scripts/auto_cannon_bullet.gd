@@ -1,7 +1,5 @@
-class_name AutoCannonBullet extends AnimatableBody2D
-
-@export var BulletDamage := 1
-@export var BulletSpeed : int = 6
+@tool
+class_name AutoCannonBullet extends Bullet
 
 @onready var animation_player = $AnimationPlayer
 
@@ -15,7 +13,3 @@ func processHit(isEnemy := false):
 	else:
 		print("miss")
 		queue_free()
-
-
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()
