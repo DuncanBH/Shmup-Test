@@ -11,10 +11,10 @@ func _physics_process(_delta):
 	rotation_degrees -= 90
 
 func _on_health_health_depleted():
-	print("dead!")
+	print("Enemy defeated!")
 	queue_free()
 
 func _on_hitbox_body_entered(body):
-	if body is AutoCannonBullet:
+	if body is Bullet && body.alignment == Bullet.Alignments.PLAYER:
 		damage(body.BulletDamage)
 		body.processHit(true)

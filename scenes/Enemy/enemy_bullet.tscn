@@ -135,10 +135,11 @@ _data = {
 radius = 11.0609
 
 [node name="EnemyBullet" type="AnimatableBody2D"]
-position = Vector2(0, 64422)
+position = Vector2(0, 108248)
 scale = Vector2(0.75, 0.75)
 collision_layer = 8
 script = ExtResource("1_ajaj4")
+alignment = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1

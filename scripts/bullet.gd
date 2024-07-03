@@ -1,6 +1,9 @@
 @tool
 class_name Bullet extends AnimatableBody2D
 
+enum Alignments {NEUTRAL, PLAYER, ENEMY}
+
+@export var alignment : Alignments = Alignments.NEUTRAL 
 @export var BulletDamage := 1
 @export var BulletSpeed : int = 6
 

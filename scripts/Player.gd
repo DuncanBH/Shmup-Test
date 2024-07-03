@@ -32,7 +32,7 @@ func _physics_process(_delta):
 
 
 func _on_health_health_depleted():
-	print("dead!")
+	print("Player died")
 
 
 func _on_health_health_changed(old_value, new_value):
@@ -41,7 +41,7 @@ func _on_health_health_changed(old_value, new_value):
 
 
 func _on_hitbox_body_entered(body):
-	if body is EnemyBullet:
+	if body is Bullet && body.alignment == Bullet.Alignments.ENEMY:
 		health.damage(body.BulletDamage)
 		body.processHit(true)
 
