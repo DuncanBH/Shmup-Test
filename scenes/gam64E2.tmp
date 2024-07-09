@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://i3x1jvnswsns"]
+[gd_scene load_steps=9 format=3 uid="uid://i3x1jvnswsns"]
 
 [ext_resource type="PackedScene" uid="uid://ch3hdvrodg0ug" path="res://scenes/Player.tscn" id="1_j476v"]
 [ext_resource type="PackedScene" uid="uid://b8nxdj3qnfcoq" path="res://scenes/enemy.tscn" id="3_fo3hp"]
 [ext_resource type="PackedScene" uid="uid://co1mx1jk3qa28" path="res://scenes/Enemy/ai_move_left_right.tscn" id="3_hag1s"]
-[ext_resource type="PackedScene" uid="uid://c30qtnd3vfwmr" path="res://scenes/Enemy/ai_fire_burst_forwards.tscn" id="4_nby15"]
-[ext_resource type="PackedScene" uid="uid://m2m5mxvg6oqe" path="res://scenes/Enemy/ai_look_at_player.tscn" id="5_mq2dr"]
+[ext_resource type="Script" path="res://scripts/enemy/AI_FireBurstForwards.gd" id="4_fie46"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4y2tn"]
 normal = Vector2(0, 1)
@@ -63,6 +62,13 @@ position = Vector2(1, -229)
 
 [node name="AI_MoveLeftRight" parent="Enemies/Enemy" instance=ExtResource("3_hag1s")]
 
-[node name="AI_FireBurstForwards" parent="Enemies/Enemy" instance=ExtResource("4_nby15")]
+[node name="AI_FireBurstForwards" type="Node" parent="Enemies/Enemy"]
+script = ExtResource("4_fie46")
+burstTiming = 0.25
+burstSize = 10
 
-[node name="AI_LookAtPlayer" parent="Enemies/Enemy" instance=ExtResource("5_mq2dr")]
+[node name="CooldownTimer" type="Timer" parent="Enemies/Enemy/AI_FireBurstForwards"]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Enemies/Enemy/AI_FireBurstForwards/CooldownTimer" to="Enemies/Enemy/AI_FireBurstForwards" method="_on_timer_timeout"]

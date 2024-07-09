@@ -1,4 +1,3 @@
-@tool
 class_name Bullet extends AnimatableBody2D
 
 enum Alignments {NEUTRAL, PLAYER, ENEMY}
@@ -14,9 +13,3 @@ func _ready():
 	
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
-
-func _get_configuration_warnings():
-	if not visibleOnScreenNotifier2d:
-		return ["This node must have a visibleOnScreenNotifier2d child."]
-	return []
-

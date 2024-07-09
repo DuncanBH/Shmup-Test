@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://m2m5mxvg6oqe"]
+
+[ext_resource type="Script" path="res://scripts/enemy/ai_look_at_player.gd" id="1_jptgg"]
+
+[node name="AI_LookAtPlayer" type="Node"]
+script = ExtResource("1_jptgg")

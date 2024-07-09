@@ -1,10 +1,9 @@
-class_name EnemyWeapon extends Node
+class_name AI_FireBurstForwards extends Node
 
 @onready var projectiles = Projectiles
 @onready var cooldown_timer = $CooldownTimer
 
 @export var bullet_scene = preload("res://scenes/Enemy/enemy_bullet.tscn")
-@export var weaponAnim : AnimatedSprite2D
 
 @export var burstTiming : float = 0.5
 @export var burstSize : int = 5

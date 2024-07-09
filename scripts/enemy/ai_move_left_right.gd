@@ -1,4 +1,4 @@
-class_name EnemyAI extends Node
+class_name AI_MoveLeftRight extends Node
 
 @onready var enemy = $".."
 

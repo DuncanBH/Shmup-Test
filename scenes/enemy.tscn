@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8nxdj3qnfcoq"]
+[gd_scene load_steps=7 format=3 uid="uid://b8nxdj3qnfcoq"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_sjtlv"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_bnysm"]
 [ext_resource type="PackedScene" uid="uid://7jo35uk6ctlu" path="res://scenes/health.tscn" id="2_2r33n"]
 [ext_resource type="Texture2D" uid="uid://isb4krca7p6h" path="res://assets/Main Ship - Base - Full health.png" id="2_3stcs"]
-[ext_resource type="Script" path="res://scripts/Hitbox.gd" id="3_3ui6p"]
-[ext_resource type="Script" path="res://scenes/EnemyWeapon.gd" id="5_ss4gy"]
-[ext_resource type="Script" path="res://scenes/EnemyAI.gd" id="6_vmyyg"]
+[ext_resource type="Script" path="res://scripts/hitbox.gd" id="4_s5iiu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mt5qp"]
 radius = 5.25595
@@ -16,7 +14,7 @@ size = Vector2(30, 26)
 [node name="Enemy" type="CharacterBody2D"]
 scale = Vector2(4, 4)
 collision_mask = 2
-script = ExtResource("1_sjtlv")
+script = ExtResource("1_bnysm")
 
 [node name="BoundingBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_mt5qp")
@@ -26,30 +24,16 @@ texture = ExtResource("2_3stcs")
 flip_v = true
 
 [node name="Health" parent="." instance=ExtResource("2_2r33n")]
+MAX_HEALTH = 200
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 4
-script = ExtResource("3_3ui6p")
+script = ExtResource("4_s5iiu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_pqfxn")
 
-[node name="EnemyWeapon" type="Node" parent="."]
-script = ExtResource("5_ss4gy")
-burstTiming = 0.25
-burstSize = 10
-
-[node name="CooldownTimer" type="Timer" parent="EnemyWeapon"]
-one_shot = true
-autostart = true
-
-[node name="EnemyAI" type="Node" parent="."]
-script = ExtResource("6_vmyyg")
-moveSpeed = 50.0
-moveDistance = 300.0
-
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
 [connection signal="area_entered" from="Hitbox" to="Health" method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
-[connection signal="timeout" from="EnemyWeapon/CooldownTimer" to="EnemyWeapon" method="_on_timer_timeout"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://v30x27i7r2i5"]
 
-[ext_resource type="Script" path="res://scripts/EnemyBullet.gd" id="1_ajaj4"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_bullet.gd" id="1_q801q"]
 [ext_resource type="Texture2D" uid="uid://btsngiqchepi" path="res://assets/Main ship weapon - Projectile - Big Space Gun.png" id="2_6h3g1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jao7r"]
@@ -135,10 +135,10 @@ _data = {
 radius = 11.0609
 
 [node name="EnemyBullet" type="AnimatableBody2D"]
-position = Vector2(0, 108248)
+position = Vector2(0, 108991)
 scale = Vector2(0.75, 0.75)
 collision_layer = 8
-script = ExtResource("1_ajaj4")
+script = ExtResource("1_q801q")
 alignment = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

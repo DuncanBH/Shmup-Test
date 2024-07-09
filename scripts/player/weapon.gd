@@ -20,7 +20,7 @@ func _on_auto_cannon_anim_animation_looped():
 func _process(delta):
 	timer += delta
 	
-	var spread = 20 if !focusFiring else 5
+	var spread = 15 if !focusFiring else 5
 	
 	if weaponAnim.animation == "Fire" && timer > weaponCooldown:
 		# Prep bullet
