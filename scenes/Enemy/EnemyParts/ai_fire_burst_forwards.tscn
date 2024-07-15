@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://c30qtnd3vfwmr"]
 
-[ext_resource type="Script" path="res://scripts/enemy/ai_fire_burst_forwards.gd" id="1_xvuty"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_fire_burst_forwards.gd" id="1_uu2l3"]
 
-[node name="AI_FireBurstForwards" type="Node"]
-script = ExtResource("1_xvuty")
+[node name="AI_FireBurstForwards" type="Node2D"]
+script = ExtResource("1_uu2l3")
 burstTiming = 0.25
 burstSize = 10
 

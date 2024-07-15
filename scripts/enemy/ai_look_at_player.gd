@@ -1,6 +1,6 @@
 class_name AI_LookAtPlayer extends Node
 
-@onready var player := %Player
+@onready var player : Player = Globals.player
 @onready var enemy : CharacterBody2D = $".."
 
 

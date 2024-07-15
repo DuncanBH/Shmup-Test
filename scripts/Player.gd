@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @onready var weapon : Weapon = $Weapon
 @onready var health : Health = $Health
@@ -9,6 +9,9 @@ extends CharacterBody2D
 
 var currentSpeed := SPEED
 
+func _ready():
+	Globals.player = self # Register self in Globals 
+	
 func _process(_delta):
 	if (Input.is_action_pressed("Slow")):
 		currentSpeed = SLOW_SPEED
@@ -32,6 +35,7 @@ func _physics_process(_delta):
 
 
 func _on_health_health_depleted():
+	get_tree().reload_current_scene() # TODO: better resetting on death
 	print("Player died")
 
 

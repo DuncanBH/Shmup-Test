@@ -1,4 +1,6 @@
-class_name AI_FireBurstForwards extends Node
+class_name AI_FireBurstForwards extends Node2D
+
+@onready var enemy = $".."
 
 @onready var projectiles = Projectiles
 @onready var cooldown_timer = $CooldownTimer
@@ -20,8 +22,8 @@ func _process(delta):
 		if (burstTimer >= burstTiming && burstShotsFired < burstSize):
 			var bullet = bullet_scene.instantiate()
 			
-			bullet.set_position(get_parent().position)
-			bullet.rotation = get_parent().rotation
+			bullet.set_position(global_position)
+			bullet.rotation = enemy.rotation
 			
 			# Instantiate
 			projectiles.add_child(bullet)

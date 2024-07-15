@@ -19,6 +19,7 @@ boot_splash/use_filter=false
 [autoload]
 
 Projectiles="*res://projectiles.tscn"
+Globals="*res://scenes/globals.tscn"
 
 [dotnet]
 

@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3c5imn2apy4a"]
+
+[ext_resource type="PackedScene" uid="uid://b8nxdj3qnfcoq" path="res://scenes/enemy.tscn" id="1_n3fmy"]
+[ext_resource type="PackedScene" uid="uid://co1mx1jk3qa28" path="res://scenes/Enemy/EnemyParts/ai_move_left_right.tscn" id="2_i752v"]
+[ext_resource type="PackedScene" uid="uid://c30qtnd3vfwmr" path="res://scenes/Enemy/EnemyParts/ai_fire_burst_forwards.tscn" id="3_qlxqi"]
+[ext_resource type="PackedScene" uid="uid://m2m5mxvg6oqe" path="res://scenes/Enemy/EnemyParts/ai_look_at_player.tscn" id="4_k0o3b"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Enemy" parent="." instance=ExtResource("1_n3fmy")]
+
+[node name="AI_MoveLeftRight" parent="Enemy" instance=ExtResource("2_i752v")]
+
+[node name="AI_FireBurstForwards" parent="Enemy" instance=ExtResource("3_qlxqi")]
+
+[node name="AI_LookAtPlayer" parent="Enemy" instance=ExtResource("4_k0o3b")]

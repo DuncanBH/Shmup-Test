@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://co1mx1jk3qa28"]
 
-[ext_resource type="Script" path="res://scripts/enemy/ai_move_left_right.gd" id="1_ed6nt"]
+[ext_resource type="Script" path="res://scripts/enemy/ai_move_left_right.gd" id="1_170uv"]
 
 [node name="AI_MoveLeftRight" type="Node"]
-script = ExtResource("1_ed6nt")
+script = ExtResource("1_170uv")
 moveSpeed = 50.0
 moveDistance = 300.0

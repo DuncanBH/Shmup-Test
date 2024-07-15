@@ -1,10 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://i3x1jvnswsns"]
+[gd_scene load_steps=7 format=3 uid="uid://i3x1jvnswsns"]
 
 [ext_resource type="PackedScene" uid="uid://ch3hdvrodg0ug" path="res://scenes/Player.tscn" id="1_j476v"]
-[ext_resource type="PackedScene" uid="uid://b8nxdj3qnfcoq" path="res://scenes/enemy.tscn" id="3_fo3hp"]
-[ext_resource type="PackedScene" uid="uid://co1mx1jk3qa28" path="res://scenes/Enemy/ai_move_left_right.tscn" id="3_hag1s"]
-[ext_resource type="PackedScene" uid="uid://c30qtnd3vfwmr" path="res://scenes/Enemy/ai_fire_burst_forwards.tscn" id="4_nby15"]
-[ext_resource type="PackedScene" uid="uid://m2m5mxvg6oqe" path="res://scenes/Enemy/ai_look_at_player.tscn" id="5_mq2dr"]
+[ext_resource type="PackedScene" uid="uid://d3c5imn2apy4a" path="res://scenes/Enemy/enemy_left_right_aiming.tscn" id="2_nw5yc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4y2tn"]
 normal = Vector2(0, 1)
@@ -58,11 +55,5 @@ shape = SubResource("WorldBoundaryShape2D_20gnp")
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("3_fo3hp")]
-position = Vector2(1, -229)
-
-[node name="AI_MoveLeftRight" parent="Enemies/Enemy" instance=ExtResource("3_hag1s")]
-
-[node name="AI_FireBurstForwards" parent="Enemies/Enemy" instance=ExtResource("4_nby15")]
-
-[node name="AI_LookAtPlayer" parent="Enemies/Enemy" instance=ExtResource("5_mq2dr")]
+[node name="Enemy_LeftRight_Aiming" parent="Enemies" instance=ExtResource("2_nw5yc")]
+position = Vector2(0, -227)
