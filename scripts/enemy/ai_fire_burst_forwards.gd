@@ -1,6 +1,6 @@
 class_name AI_FireBurstForwards extends Node2D
 
-@onready var enemy = $".."
+@onready var enemy : CharacterBody2D = $".."
 
 @onready var projectiles = Projectiles
 @onready var cooldown_timer = $CooldownTimer

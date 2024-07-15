@@ -1,6 +1,6 @@
 class_name AI_MoveLeftRight extends Node
 
-@onready var enemy = $".."
+@onready var enemy : CharacterBody2D = $".."
 
 @export var moveSpeed : float = 5
 @export var moveDistance : float = 5

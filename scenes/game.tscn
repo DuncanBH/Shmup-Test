@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://i3x1jvnswsns"]
+[gd_scene load_steps=8 format=3 uid="uid://i3x1jvnswsns"]
 
 [ext_resource type="PackedScene" uid="uid://ch3hdvrodg0ug" path="res://scenes/Player.tscn" id="1_j476v"]
 [ext_resource type="PackedScene" uid="uid://d3c5imn2apy4a" path="res://scenes/Enemy/enemy_left_right_aiming.tscn" id="2_nw5yc"]
+[ext_resource type="PackedScene" uid="uid://bd8dd6of3vwhj" path="res://scenes/Enemy/basic_enemy.tscn" id="3_wx68f"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4y2tn"]
 normal = Vector2(0, 1)
@@ -57,3 +58,6 @@ shape = SubResource("WorldBoundaryShape2D_20gnp")
 
 [node name="Enemy_LeftRight_Aiming" parent="Enemies" instance=ExtResource("2_nw5yc")]
 position = Vector2(0, -227)
+
+[node name="BasicEnemy" parent="Enemies" instance=ExtResource("3_wx68f")]
+position = Vector2(-288, -193)
